@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe build active file",
+            "command": "C:\\mingwnew\\bin\\g++.exe",
+            "args": [
+                "-Wall",
+                "-Werror",
+                "-pedantic",
+                "-g",
+                "-std=c++11",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\lab2\\starter-files\\starter-files\\lab02.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\lab2\\starter-files\\starter-files\\lab02_tests.cpp",
+                "-o",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\lab2\\starter-files\\starter-files\\lab02_tests.exe"
+            ],
+            "options": {
+                "cwd": "C:\\mingwnew\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

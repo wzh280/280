@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe build active file",
+            "command": "C:\\mingwnew\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "-std=c++11",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p2\\starter-files\\starter-files\\Matrix_tests.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p2\\starter-files\\starter-files\\Matrix.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p2\\starter-files\\starter-files\\Matrix_test_helpers.cpp",
+                "-o",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p2\\starter-files\\starter-files\\Matrix_test.exe"
+            ],
+            "options": {
+                "cwd": "C:\\mingwnew\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
