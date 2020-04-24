@@ -31,6 +31,7 @@ Pack::Pack(std::istream& pack_input){
         else if(i%3==2){
             suit = word;
             cards[index] = Card(rank, suit);
+            //std::cout<<"pack:"<<rank<< "of"<<suit<<std::endl;
             index = index +1;
         }
         i = i+1;
@@ -39,6 +40,7 @@ Pack::Pack(std::istream& pack_input){
 
 Card Pack::deal_one(){
     next = next + 1;
+    //std::cout<<next-1<<std::endl;
     return cards[next - 1];
 }
 

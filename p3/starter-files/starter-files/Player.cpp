@@ -77,6 +77,7 @@ class simple : public Player{
     }
 
     void add_and_discard(const Card &upcard) {
+        //std::cout<<"add and discard"<<std::endl;
         assert(cards.size() >=1);
         cards.push_back(upcard);
         Card lowerst_card = cards[0];
@@ -143,6 +144,7 @@ class simple : public Player{
                 }
             }
         }
+        //std::cout<<"first_non_trump"<<first_non_trump<<std::endl;
         
         if(num_non_trump==0){
             int index = 0;
@@ -156,20 +158,20 @@ class simple : public Player{
             cards.erase(cards.begin()+index); 
             return highest_trump_card;
         }
-        else{
-            Card lowest_non_trump_card = cards[first_non_trump];
-            int index_l = first_non_trump;
-            for(size_t i=first_non_trump; i<cards.size();i++){
-                if(cards[i].get_suit(trump)!=trump){
-                    if(Card_less(cards[i], lowest_non_trump_card, trump)){
-                    lowest_non_trump_card = cards[i];
-                    index_l = i;
-                    }
-                } 
-                cards.erase(cards.begin()+index_l);
-                return lowest_non_trump_card;
-            }
+       
+        Card highest_non_trump_card = cards[first_non_trump];
+        int index_l = first_non_trump;
+        for(size_t i=first_non_trump; i<cards.size();i++){
+            if(cards[i].get_suit(trump)!=trump){
+                if(Card_less(highest_non_trump_card,cards[i], trump)){
+                highest_non_trump_card = cards[i];
+                index_l = i;
+                }
+            }        
         }
+        cards.erase(cards.begin()+index_l);
+        return highest_non_trump_card;
+        
     }
 
 
@@ -298,18 +300,14 @@ class human : public Player{
                 return true;
             }
         }
-        else if(round ==2){
-            std::cout << "Human player Judea, please enter a suit, or \"pass\":" << std::endl;
-            std::cin>>word;
-            if(word == "pass"){
-                return false;
-            }
-            else{
-                order_up_suit = word;
-                return true;
-            }
-        }
 
+        std::cout << "Human player Judea, please enter a suit, or \"pass\":" << std::endl;
+        std::cin>>word;
+        if(word == "pass"){
+            return false;
+        }
+        order_up_suit = word;
+        return true;
     }
 
     void add_and_discard(const Card &upcard) {

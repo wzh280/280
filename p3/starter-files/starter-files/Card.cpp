@@ -201,6 +201,9 @@ bool Card_less(const Card &a, const Card &b, const std::string &trump){
     }
     else if(b.is_trump(trump)){
         if(a.is_trump(trump)){
+            if(a.is_right_bower(trump)||a.is_left_bower(trump)){
+                    return false;
+            }
             return a<b;
         }
         else {return true;}
@@ -227,12 +230,16 @@ bool Card_less(const Card &a, const Card &b, const Card &led_card,
         else return true;
     }
     else if(b.is_trump(trump)){
-        if(a.is_trump(trump)){
-            return a<b;
-        }
-        else{
-            return true; 
-        }
+            if(a.is_trump(trump)){
+                if(a.is_right_bower(trump)||a.is_left_bower(trump)){
+                    return false;
+                }
+                return a<b;
+            }
+            else{
+                //std::cout<<"comp here"<<std::endl;
+                return true; 
+            }
         
     }
     else if(b.get_suit()==led_suit){

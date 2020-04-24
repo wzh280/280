@@ -1,0 +1,51 @@
+C:\Users\wangzihan\Desktop\cpp\p3\starter-files\starter-files\euchre.exe pack.in noshuffle 3 Ivan Human Judea Human Kunle Human Liskov Human
+ Hand 0
+Ivan deals
+Jack of Diamonds turns up
+Judea passes 
+Kunle passes 
+Liskov passes 
+Ivan passes 
+Judea orders up Hearts
+
+Jack of Spades led by Judea
+King of Spades played by Kunle
+Ace of Spades played by Liskov
+Nine of Diamonds played by Ivan
+Liskov takes the trick
+
+King of Clubs led by Liskov
+Ace of Clubs played by Ivan
+Nine of Spades played by Judea
+Jack of Clubs played by Kunle
+Ivan takes the trick
+
+Ten of Diamonds led by Ivan
+Ten of Spades played by Judea
+Nine of Clubs played by Kunle
+Queen of Clubs played by Liskov
+Ivan takes the trick
+
+Jack of Hearts led by Ivan
+Ace of Hearts played by Judea
+Ten of Clubs played by Kunle
+Ten of Hearts played by Liskov
+Ivan takes the trick
+
+Queen of Hearts led by Ivan
+King of Hearts played by Judea
+Queen of Spades played by Kunle
+Nine of Hearts played by Liskov
+Judea takes the trick
+
+Ivan and Kunle win the hand 
+euchred!
+Ivan and Kunle have 2 points 
+Judea and Liskov have 0 points 
+
+Hand 1
+Judea deals
+Jack of Diamonds turns up
+Kunle passes 
+Liskov passes 
+Ivan passes 
