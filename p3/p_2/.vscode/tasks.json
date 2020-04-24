@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe build active file",
+            "command": "C:\\mingwnew\\bin\\g++.exe",
+            "args": [
+                //"-Wall",
+                //"-Werror",
+                //"-pedantic",
+                "-g",
+                "-std=c++11",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p3\\starter-files\\starter-files\\Card.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p3\\starter-files\\starter-files\\Pack.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p3\\starter-files\\starter-files\\Player.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p3\\starter-files\\starter-files\\game.cpp",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p3\\starter-files\\starter-files\\euchre.cpp",
+                "-o",
+                "C:\\Users\\wangzihan\\Desktop\\cpp\\p3\\starter-files\\starter-files\\euchre.exe"
+            ],
+            "options": {
+                "cwd": "C:\\mingwnew\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
