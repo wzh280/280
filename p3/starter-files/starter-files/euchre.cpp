@@ -79,14 +79,15 @@ int game_make_trump(vector<Player *> &player_vec, Card upcard, int dealer_index,
             }
             bool is_dealer=0;
             if(j==dealer_index){is_dealer==1;}
-            if(player_vec[j]->make_trump(upcard, is_dealer,round, order_up_suit) == 1){
+            if(player_vec[j]->make_trump(upcard, is_dealer,round, order_up_suit,os) == 1){
                 maker_index = j;
                 cout<<player_vec[j]->get_name()<< " orders up "<<order_up_suit<<endl;
                 cout<<endl;
                 os<<player_vec[j]->get_name()<< " orders up "<<order_up_suit<<endl;
                 os<<endl;
                 if(round==1){
-                    player_vec[dealer_index]->add_and_discard(upcard);
+
+                    player_vec[dealer_index]->add_and_discard(upcard,os);
                 }   
                 return maker_index;
             }
@@ -105,7 +106,7 @@ return -100;
 void game_play(vector<Player *> &player_vec, const string &trump, int &leader_index, ostream& os){
         int j;
 
-        Card lead_card = player_vec[leader_index]->lead_card(trump);
+        Card lead_card = player_vec[leader_index]->lead_card(trump,os);
         Card win_card =  lead_card;
         cout<<lead_card.get_rank()<<" of "<<lead_card.get_suit()<<" led by "<<player_vec[leader_index]->get_name()<<endl;
         os<<lead_card.get_rank()<<" of "<<lead_card.get_suit()<<" led by "<<player_vec[leader_index]->get_name()<<endl;
@@ -113,7 +114,7 @@ void game_play(vector<Player *> &player_vec, const string &trump, int &leader_in
         for(int i=index+1; i<index+4; i++){           
             if(i>3){j=i-4;}
             else{j=i;}
-            Card played_card = player_vec[j]->play_card(lead_card, trump);
+            Card played_card = player_vec[j]->play_card(lead_card, trump,os);
             cout<<played_card.get_rank()<<" of "<<played_card.get_suit()<<" played by "<<player_vec[j]->get_name()<<endl;
             os<<played_card.get_rank()<<" of "<<played_card.get_suit()<<" played by "<<player_vec[j]->get_name()<<endl;
             if(Card_less(win_card, played_card, lead_card,trump)==1){

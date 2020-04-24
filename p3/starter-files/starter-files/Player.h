@@ -30,22 +30,22 @@ class Player {
   //  change order_up_suit to desired suit.  If Player wishes to pass, then do
   //  not modify order_up_suit and return false.
   virtual bool make_trump(const Card &upcard, bool is_dealer,
-                          int round, std::string &order_up_suit) const = 0;
+                          int round, std::string &order_up_suit, std::ostream& os) const = 0;
 
   //REQUIRES Player has at least one card
   //EFFECTS  Player adds one card to hand and removes one card from hand.
-  virtual void add_and_discard(const Card &upcard) = 0;
+  virtual void add_and_discard(const Card &upcard, std::ostream& os) = 0;
 
   //REQUIRES Player has at least one card, trump is a valid suit
   //EFFECTS  Leads one Card from Player's hand according to their strategy
   //  "Lead" means to play the first Card in a trick.  The card
   //  is removed the player's hand.
-  virtual Card lead_card(const std::string &trump) = 0;
+  virtual Card lead_card(const std::string &trump, std::ostream& os) = 0;
 
   //REQUIRES Player has at least one card, trump is a valid suit
   //EFFECTS  Plays one Card from Player's hand according to their strategy.
   //  The card is removed from the player's hand.
-  virtual Card play_card(const Card &led_card, const std::string &trump) = 0;
+  virtual Card play_card(const Card &led_card, const std::string &trump, std::ostream& os) = 0;
 
   // Maximum number of cards in a player's hand
   static const int MAX_HAND_SIZE = 5;

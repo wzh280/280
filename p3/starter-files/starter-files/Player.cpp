@@ -9,6 +9,9 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <ostream>
+#include <sstream>
+#include <fstream>
 
 
 class simple : public Player{
@@ -36,7 +39,7 @@ class simple : public Player{
     }
 
     bool make_trump(const Card &upcard, bool is_dealer,
-                          int round, std::string &order_up_suit) const {
+                          int round, std::string &order_up_suit, std::ostream& os) const {
                             
         if(round == 1){
             int trump_face_card_num = 0;
@@ -76,7 +79,7 @@ class simple : public Player{
         return false;
     }
 
-    void add_and_discard(const Card &upcard) {
+    void add_and_discard(const Card &upcard, std::ostream& os) {
         //std::cout<<"add and discard"<<std::endl;
         assert(cards.size() >=1);
         cards.push_back(upcard);
@@ -132,7 +135,7 @@ class simple : public Player{
     //         cards.erase(cards.begin()+index);  
     //     }
     // }
-    Card lead_card(const std::string &trump){
+    Card lead_card(const std::string &trump, std::ostream& os){
         Card lead_card = cards[0];
         int num_non_trump = 0;
         int first_non_trump = -1;
@@ -217,7 +220,7 @@ class simple : public Player{
 //     }
 // };
 
-    Card play_card(const Card &led_card, const std::string &trump){
+    Card play_card(const Card &led_card, const std::string &trump, std::ostream& os){
         std::string led_suit = led_card.get_suit(trump);
         int num_led_card = 0;
         int first_led_card = -1;
@@ -283,25 +286,31 @@ class human : public Player{
     }
 
     bool make_trump(const Card &upcard, bool is_dealer,
-                        int round, std::string &order_up_suit) const{
+                        int round, std::string &order_up_suit, std::ostream& os ) const{
         std::string word;
         for (size_t i = 0; i < cards.size(); ++i) {
         std::cout << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
+        os << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
         }
+        std::cout << "Human player "<<name<<", please enter a suit, or \"pass\":" << std::endl;
+        os << "Human player "<<name<<", please enter a suit, or \"pass\":" << std::endl;
         if(round == 1){
-            std::cout << "pass or order up" << std::endl;
+            // std::cout << "pass or order up" << std::endl;
+            // os << "pass or order up" << std::endl;
 
             std::cin>>word;
             if(word == "pass"){
                 return false;
             }
-            else if(word == "order up"){
+            else{
                 order_up_suit = upcard.get_suit();
                 return true;
             }
         }
 
-        std::cout << "Human player Judea, please enter a suit, or \"pass\":" << std::endl;
+        // std::cout << "Human player "<<name<<", please enter a suit, or \"pass\":" << std::endl;
+        // os << "Human player "<<name<<", please enter a suit, or \"pass\":" << std::endl;
+
         std::cin>>word;
         if(word == "pass"){
             return false;
@@ -310,14 +319,17 @@ class human : public Player{
         return true;
     }
 
-    void add_and_discard(const Card &upcard) {
+    void add_and_discard(const Card &upcard, std::ostream& os) {
         std::sort(cards.begin(),cards.end(),operator<);
         std::string word;
         for (size_t i = 0; i < cards.size(); ++i) {
         std::cout << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
+        os << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
         }
         std::cout<<"Discard upcard: [-1]"<<std::endl;
-        std::cout<<"Human player Ivan, please select a card to discard:"<<std::endl;
+        std::cout<<"Human player "<<name<<", please select a card to discard:"<<std::endl;
+        os<<"Discard upcard: [-1]"<<std::endl;
+        os<<"Human player "<<name<<", please select a card to discard:"<<std::endl;
         std::cin>>word;
 
         int discard_index;
@@ -335,12 +347,14 @@ class human : public Player{
         }
     }
 
-    Card lead_card(const std::string &trump){
+    Card lead_card(const std::string &trump,std::ostream& os){
         std::string word;
         for (size_t i = 0; i < cards.size(); ++i) {
         std::cout << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
+        os << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
         }
-        std::cout<<"Human player Judea, please select a card:"<<std::endl;
+        std::cout<<"Human player "<<name<<", please select a card:"<<std::endl;
+        os<<"Human player "<<name<<", please select a card:"<<std::endl;
         std::cin>>word;
         int lead_index;
         std::istringstream iss;//istringstream从string读入,和cin一样仅仅重载了>>,可以把string转为int
@@ -352,12 +366,14 @@ class human : public Player{
         return lead_card;
     }
 
-    Card play_card(const Card &led_card, const std::string &trump){
+    Card play_card(const Card &led_card, const std::string &trump,std::ostream& os){
         std::string word;
         for (size_t i = 0; i < cards.size(); ++i) {
         std::cout << "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
+        os<< "Human player " << name << "'s hand: [" << i << "] " << cards.at(i) << std::endl;
         }
-        std::cout<<"Human player Judea, please select a card:"<<std::endl;
+        std::cout<<"Human player "<<name<<", please select a card:"<<std::endl;
+        os<<"Human player "<<name<<", please select a card:"<<std::endl;
         std::cin>>word;
         int play_index;
         //play_index = stoi(word); 
